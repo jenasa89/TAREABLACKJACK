@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tarea blackjack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47dde7397ba2a613e3d6c89d2bad713a8ad6d549")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d5d522e346e528d83a28d0198458d5f1d505404")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tarea blackjack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tarea blackjack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
