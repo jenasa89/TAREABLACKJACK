@@ -1,8 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-class Program
+﻿class Program
 {
 
-    static void main()
+    static void Main(string[] args)
     {
 
         Console.WriteLine("Aplicacion de BlackJack!");
@@ -22,6 +21,45 @@ class Program
         Console.WriteLine(jugador1);
         Console.WriteLine(crupier);
 
+//Turnos
+        Console.WriteLine("\nTurno del Jugador UNO...");
+while(true){
+        Console.WriteLine("Quieres pedir otra carta??  S/N");
+        string respuesta = Console.ReadLine() ?? ""; //no puede ser nullo, entonces le asigno ""
+    if (respuesta == "s"){
+        jugador1.RecibirCarta(barajaNueva.RobarCarta());
+        Console.WriteLine(jugador1);
+        if (jugador1.EstaEliminado()){
+            Console.WriteLine("Superaste 21. !! P E R D I S T E ¡¡ ");
+            return;
+        }
+    }else{
+        break;
+    }
+}
+// Turno del crupier (automático)
+        Console.WriteLine("\nTurno del crupier...");
+        while (crupier.PedirCarta()) {
+            crupier.RecibirCarta(barajaNueva.RobarCarta());
+            Console.WriteLine(crupier);
+        }
 
+//Determinar 
+int puntosJugador = jugador1.CalcularPuntaje();
+int puntosCrupier = crupier.CalcularPuntaje();
+
+Console.WriteLine("\n -- Resultado Final --");
+Console.WriteLine(jugador1);
+Console.WriteLine(crupier);
+
+if (crupier.EstaEliminado() || puntosJugador > puntosCrupier) {
+            Console.WriteLine("¡Felicidades! Has ganado.");
+        } else if (puntosJugador == puntosCrupier) {
+            Console.WriteLine("Es un empate.");
+        } else {
+            Console.WriteLine("El crupier gana.");
+        }
+
+        Console.WriteLine($"Quedan {barajaNueva.CartasRestantes()} cartas en la baraja.");
     }
 }

@@ -24,13 +24,18 @@ public class Baraja
             //Con for generamos las cartas del 1 al 10
             for (int i = 1; i <= 10; i++)
             {
-                valores.Add($"{palo} {i}", i); // añade com Add al diccionario y usamos formateo 
-            }
+                {
+                    valores.Add($"{palo} {i}", (i == 1) ? 11 : i);  // añade com Add al diccionario y usamos formateo
+                }// 🔹 As inicialmente vale 11
 
-            // Con este otro pondremos las figuras y su valor
-            foreach (string figura in figuras)
-            {
-                valores.Add($"{palo} {figura}", 10);
+                // Con este otro pondremos las figuras y su valor
+                foreach (string figura in figuras)
+                {
+                    string carta = $"{palo} {figura}";
+                    if (!valores.ContainsKey(carta)){
+                        valores.Add(carta,10);
+                    }
+                }
             }
         }
     }

@@ -1,18 +1,26 @@
 public class Jugador {
 
 public string Nombre {get; private set; }
-public List<string> Mano { get; private set; }//Ahora es lista
+public List<string> Mano { get; private set; }//Ahora es lista de strings
 public bool EsCrupier { get; private set; }
 private Baraja baraja;
+private int Puntuacion { get; set; }
+
 
     public Jugador(string nombre, Baraja baraja, bool esCrupier = false){
         Nombre = nombre;
         EsCrupier = esCrupier;
         Mano = new List<string>();
         this.baraja = baraja;
+        Puntuacion = 0;
+    }
+   public void RecibirCarta(string carta){
+        Mano.Add(carta);
+        Puntuacion += baraja.ObtenerValor(carta);  // Aquí se suma el valor de la carta a la puntuación
     }
     public void RecibirCarta(string carta, int valor){
         Mano.Add(carta);
+        Puntuacion += valor;
     }
 
     public int CalcularPuntaje(){
