@@ -13,10 +13,8 @@
 
         Console.WriteLine("Repartimos las cartas.");
         for (int i = 0; i < 2; i++){
-            string cartaJugador = barajaNueva.RobarCarta();
-            jugador1.RecibirCarta(cartaJugador, barajaNueva.ObtenerValor(cartaJugador));
-            string cartaCrupier = barajaNueva.RobarCarta();
-            crupier.RecibirCarta(cartaCrupier, barajaNueva.ObtenerValor(cartaCrupier));
+        jugador1.RecibirCarta(barajaNueva.RobarCarta());
+        crupier.RecibirCarta(barajaNueva.RobarCarta());
         }
         Console.WriteLine(jugador1);
         Console.WriteLine(crupier);
@@ -26,7 +24,7 @@
 while(true){
         Console.WriteLine("Quieres pedir otra carta??  S/N");
         string respuesta = Console.ReadLine() ?? ""; //no puede ser nullo, entonces le asigno ""
-    if (respuesta == "s"){
+    if (respuesta.ToLower() == "s"){
         jugador1.RecibirCarta(barajaNueva.RobarCarta());
         Console.WriteLine(jugador1);
         if (jugador1.EstaEliminado()){
