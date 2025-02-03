@@ -1,16 +1,18 @@
 public class Jugador {
 
 public string Nombre {get; private set; }
-public List<Carta> Mano { get; private set; }
+public List<string> Mano { get; private set; }//Ahora es lista
 public bool EsCrupier { get; private set; }
+private Baraja baraja;
 
-    public Jugador(string nombre, bool esCrupier = false){
+    public Jugador(string nombre, Baraja baraja, bool esCrupier = false){
         Nombre = nombre;
         EsCrupier = esCrupier;
-        Mano = new List<Carta>();
+        Mano = new List<string>();
+        this.baraja = baraja;
     }
-    public void RecibirCarta(Carta cartaNew){
-        Mano.Add(cartaNew);
+    public void RecibirCarta(string carta, int valor){
+        Mano.Add(carta);
     }
 
     public int CalcularPuntaje(){
@@ -18,9 +20,11 @@ public bool EsCrupier { get; private set; }
         int cantidadAs = 0;
 
         foreach (var carta in Mano){
-            total += carta.Puntuacion;
-            if (carta.Valor == "A"){
+            if(carta.Contains("1")){ //si es as
                 cantidadAs++;
+                total += 1; // lo consideramos 1
+            } else {
+                total += baraja.ObtenerValor(carta);
             }
         }
 
@@ -33,7 +37,7 @@ public bool EsCrupier { get; private set; }
         return total;
     }
 
-public bool SuperaPuntaje(){
+public bool EstaEliminado(){
      return CalcularPuntaje() > 21;
 }
 
